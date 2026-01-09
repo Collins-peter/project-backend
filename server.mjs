@@ -22,11 +22,11 @@ const io = new Server(server, {
 })
 
 //CONNECTING FRONTEND URL
-app.use(cors({
+app.use(cors(/*{
     origin: process.env.API_VITE_URL,
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
-}));
+}*/));
 
 //CHECKING DATABASE CONNECTION
 db.connect((error) => {
