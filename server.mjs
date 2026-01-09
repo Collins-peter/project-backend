@@ -46,7 +46,10 @@ io.on("connection", (socket) => {
 app.post("/admin/create-tracker", createPackage);
 app.put("/admin/update-status", updateStatus);
 app.get("/admin/track-package/:trackId", trackPackage);
-
+app.get("/me", async(req, res) => {
+    <h1>My name is Collins</h1>
+    res.json({message: "Thats my name"})
+})
 //MAKING io AVAILABLE GLOBALLY FOR CONTROLLER
 global.io = io;
 
