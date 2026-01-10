@@ -11,7 +11,6 @@ import updateStatus from "./controller/updateStatus.mjs";
 dotenv.config({path:"./.env"});
 
 const app = express();
-app.use(express.json());
 
 const server = createServer(app);
 const io = new Server(server, {
@@ -27,6 +26,7 @@ app.use(cors({
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }));
+app.use(express.json());
 
 //CHECKING DATABASE CONNECTION
 db.connect((error) => {
@@ -46,6 +46,10 @@ io.on("connection", (socket) => {
 app.post("/admin/create-tracker", createPackage);
 app.put("/admin/update-status", updateStatus);
 app.get("/admin/track-package/:trackId", trackPackage);
+
+app.get("/me", (req, res) => {
+    res.json({message: "API connected"})
+})
 
 //MAKING io AVAILABLE GLOBALLY FOR CONTROLLER
 global.io = io;
