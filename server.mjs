@@ -15,14 +15,14 @@ const app = express();
 const server = createServer(app);
 const io = new Server(server, {
     cors: {
-        origin : process.env.API_VITE_URL,
+        origin : "https://generate-trackerid.netlify.app",
         methods : ["GET", "POST"]
     }
 })
 
 //CONNECTING FRONTEND URL
 app.use(cors({
-    origin: process.env.API_VITE_URL,
+    origin: "https://generate-trackerid.netlify.app",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }));
