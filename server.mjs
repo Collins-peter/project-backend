@@ -1,5 +1,5 @@
-import dotenv from "dotenv";
 import express from "express";
+import dotenv from "dotenv"
 import cors from "cors";
 import db from "./Database/dataBase.mjs";
 import { createServer } from "http";
@@ -8,7 +8,7 @@ import createPackage from "./controller/createPackage.mjs";
 import trackPackage from "./controller/trackPackage.mjs";
 import updateStatus from "./controller/updateStatus.mjs";
 
-dotenv.config();
+dotenv.config({path:"./.env"});
 
 const app = express();
 app.use(express.json());
@@ -16,14 +16,14 @@ app.use(express.json());
 const server = createServer(app);
 const io = new Server(server, {
     cors: {
-        origin : 'https://generate-trackerid.netlify.app/',
+        origin : process.env.API_VITE_URL,
         methods : ["GET", "POST"]
     }
 })
 
 //CONNECTING FRONTEND URL
 app.use(cors({
-    origin: 'https://generate-trackerid.netlify.app/',
+    origin: process.env.API_VITE_URL,
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }));
